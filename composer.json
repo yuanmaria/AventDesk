@@ -1,0 +1,16 @@
+{
+    "name": "nanomites/helpdesk",
+    "description": "Elegant helpdesk",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Nanomites, Inc.",
+            "email": "hello@nanomit.es"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "filp/whoops": "~1.0",
+        "phalcon/incubator": "dev-master"
+    }
+}

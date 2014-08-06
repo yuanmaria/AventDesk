@@ -1,0 +1,13 @@
+composer.lock
+vendor/
+.idea/
+app/Storage/View/Cache/*
+!app/Storage/View/Cache/.gitkeep
+app/Storage/View/Compiled/*.compiled
+!app/Storage/View/Cache/.gitkeep
+app/Storage/Attachments/*
+!app/Storage/Attachments/.gitkeep
+app/Storage/Cache/*
+!app/Storage/Cache/.gitkeep
+app/Storage/Logs/*
+!app/Storage/Logs/.gitkeep
