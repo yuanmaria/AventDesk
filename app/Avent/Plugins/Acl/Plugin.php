@@ -38,7 +38,7 @@ class Plugin extends AbstractPlugin
     public function getAcl()
     {
         $connection = $this->_di['db'];
-        $acl = new \Phalcon\Acl\Adapter\Database(array(
+        $acl = new Phalcon\Acl\Adapter\Database(array(
             'db' => $connection,
             'roles' => 'roles',
             'rolesInherits' => 'roles_inherits',

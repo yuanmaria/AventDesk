@@ -17,7 +17,7 @@
  
  
 
-namespace Nanomites\Modules\Admin\Controllers;
+namespace App\Modules\Admin\Controllers;
 
 
 class IndexController extends \Phalcon\Mvc\Controller {

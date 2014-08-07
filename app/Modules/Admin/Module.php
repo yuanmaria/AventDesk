@@ -14,23 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
- 
 
-namespace Nanomites\Modules\Admin;
+namespace App\Modules\Admin;
 
+use Phalcon\Config\Adapter\Ini as IniConfig;
+use Phalcon\Loader;
+use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\View;
+use App\Avent\Modules\AbstractModule;
 
-class Module implements \Phalcon\Mvc\ModuleDefinitionInterface
+class Module extends AbstractModule
 {
 
     public function registerAutoloaders()
     {
-        $loader = new \Phalcon\Loader();
+        $loader = new Loader();
 
         $loader->registerNamespaces(
             [
-                "Nanomites\\Modules\\Admin\\Controllers" => dirname(__FILE__) . "/controllers/"
-            ]
+                "App\\Modules\\Admin\\Controllers" => dirname(__FILE__) . "/controllers/"
+            ],
+            true
         );
 
         $loader->register();
@@ -43,8 +47,8 @@ class Module implements \Phalcon\Mvc\ModuleDefinitionInterface
         $di->set(
             "dispatcher",
             function () use ($di) {
-                $dispatcher = new \Phalcon\Mvc\Dispatcher();
-                $dispatcher->setDefaultNamespace("Nanomites\\Modules\\Admin\\Controllers");
+                $dispatcher = new Dispatcher();
+                $dispatcher->setDefaultNamespace("App\\Modules\\Admin\\Controllers");
                 return $dispatcher;
             }
         );
@@ -52,14 +56,19 @@ class Module implements \Phalcon\Mvc\ModuleDefinitionInterface
         $di->set(
             "view",
             function () use ($config) {
-                $view = new \Phalcon\Mvc\View();
-                $view->setViewsDir(dirname(__FILE__) . "/views/");
-                $view->registerEngines(array(
+                $view = new View();
+                $view->setViewsDir($config->application->templatePath . $config->application->theme . "/admin/");
+                $view->registerEngines(
+                    array(
                         ".volt" => 'voltService'
-                    ));
+                    )
+                );
                 return $view;
             }
         );
+
+        $this->initPlugin($di);
     }
 }
-// end of Module.php 
+
+// end of Module.php
